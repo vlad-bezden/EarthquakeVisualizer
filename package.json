@@ -1,0 +1,20 @@
+{
+  "name": "earthquakevisualizer",
+  "version": "1.0.0",
+  "description": "Web app that uses RxJS 5.0.0 and leaflet to show where earthquakes are happening in a real time. It also provides example on how to use pure Node.js for processing files instead of import libraries like 'express', 'hapi' or 'koa'",
+  "main": "./app/index.html",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "keywords": [
+    "rxjs",
+    "earthquake",
+    "map",
+    "realtime",
+    "observable"
+  ],
+  "author": "Vlad Bezden",
+  "license": "MIT"
+}
