@@ -7,9 +7,9 @@ function requestHandler(request, response) {
     console.log(`REQUEST: ${request.url}`);
 
     if (request.url === '/' || request.url === '/index' || request.url === '/index.html') {
-        getFileContent(response, 'app/index.html', 'text/html');
+        getFileContent(response, '/index.html', 'text/html');
     } else if (request.url === '/favicon.ico') {
-        getFileContent(response, 'app/assets/favicon.ico', 'image/png');
+        getFileContent(response, 'public/assets/favicon.ico', 'image/png');
     } else if (/^\/[a-zA-Z0-9\/]*.js$/.test(request.url.toString())) {
         getFileContent(response, request.url.toString().substring(1), 'text/javascript');
     } else if (/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())) {

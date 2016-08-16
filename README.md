@@ -10,7 +10,7 @@ Application is using:
 To run application 
 - start server first. 
 ```
-node server.js
+node index.js
 ```
 - open application from browser
 ```
