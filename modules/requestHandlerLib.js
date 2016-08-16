@@ -23,7 +23,7 @@ function requestHandler(request, response) {
 }
 
 function getFileContent(response, fileName, contentType) {
-    const fullFilePath = path.join(__dirname, '..', '..', fileName); 
+    const fullFilePath = path.join(__dirname, '..', fileName); 
     
     console.log(`File Path: ${fullFilePath}`);
 
