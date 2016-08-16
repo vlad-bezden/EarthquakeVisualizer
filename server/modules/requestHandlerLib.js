@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 
 function requestHandler(request, response) {
     console.log(`REQUEST: ${request.url}`);
@@ -22,9 +23,9 @@ function requestHandler(request, response) {
 }
 
 function getFileContent(response, fileName, contentType) {
-    const fullFilePath = `${__dirname}/../../${fileName}`; 
+    const fullFilePath = path.join(__dirname, '..', '..', fileName); 
     
-    console.log(fullFilePath);
+    console.log(`File Path: ${fullFilePath}`);
 
     fs.readFile(fullFilePath, function (err, data) {
         if (err) {
