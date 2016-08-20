@@ -34,13 +34,21 @@
 
     const interval$ = Observable.interval(RELOAD_RATE);
 
-    const quakesWebService$ = Observable.create(observer => {
-        window.eqfeed_callback = response => {
-            observer.next(response)
-            observer.complete()
-        }
-        loadJSONP(QUAKE_URL);
-    })
+    const quakesWebServiceRequest = function (url) {
+        return new Promise(function (resolve, reject) {
+            try {
+                window.eqfeed_callback = response => resolve(response);
+            } catch (err) {
+                console.error(err);
+                reject(err);
+            }
+            loadJSONP(url);
+        });
+    }
+
+    const quakesWebService$ = Observable
+        .defer(() =>
+            Observable.fromPromise(quakesWebServiceRequest(QUAKE_URL)))
         .retry(3);
 
     const startInterval$ = interval$
@@ -50,6 +58,7 @@
     startInterval$
         .mergeMap(dataset => Observable.from(dataset.features))
         .map(quake => transform(quake))
+        //.do(x => console.log(`${new Date().toLocaleTimeString()}: ${JSON.stringify(x)}`))        
         .distinctKey('code')
         .subscribe(quake => drawMap(quake));
 
